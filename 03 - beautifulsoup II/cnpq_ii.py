@@ -13,18 +13,19 @@ site = BeautifulSoup(content, 'html.parser')
 
  # CHAMADAS PÚBLICAS CNPQ 
 
-chamada = site.find('div', attrs={'class': 'content'}) 
+chamadas = site.findAll('div', attrs={'class': 'content'}) 
 # tag, parâmetro {dict}
 
-# print(chamada.text.)
+for chamada in chamadas: 
+  # print(chamada.text)
 
-# TITULO DA CHAMADA 
-titulo = chamada.find('h4')
+  # TITULO DA CHAMADA 
+  titulo = chamada.find('h4')
 
-# DESCRIÇÃO 
-descricao = chamada.find('p')
+  # DESCRIÇÃO 
+  descricao = chamada.find('p')
 
-#DATA 
-data = chamada.find('div', attrs={'class': 'inscricao'})
+  #DATA 
+  data = chamada.find('div', attrs={'class': 'inscricao'})
 
-print(titulo.text + '\n' + descricao.text + '\n' + data.text)
+  print(titulo.text + '\n' + descricao.text + '\n' + data.text)
