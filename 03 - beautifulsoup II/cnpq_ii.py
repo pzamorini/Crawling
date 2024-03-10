@@ -14,6 +14,7 @@ site = BeautifulSoup(content, 'html.parser')
  # CHAMADAS PÚBLICAS CNPQ 
 
 chamadas = site.findAll('div', attrs={'class': 'content'}) 
+pdfs_chamadas = site.findAll('div', attrs={'class': 'links-normas pull-left'})
 # tag, parâmetro {dict}
 
 for chamada in chamadas: 
@@ -28,4 +29,8 @@ for chamada in chamadas:
   #DATA 
   data = chamada.find('div', attrs={'class': 'inscricao'})
 
-  print(titulo.text + '\n' + descricao.text + '\n' + data.text)
+for pdf_chamada in pdfs_chamadas:
+  link_edital = pdf_chamada.find('a', attrs={'class': 'btn'})
+
+print(titulo.text + '\n' + descricao.text + '\n' + data.text
+      + '\n' + f"Chamada: {link_edital['href']}")
